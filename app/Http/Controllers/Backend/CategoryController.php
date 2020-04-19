@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         return view('backend/categories/index', [
-            'categories' => Category::all()
+            'categories' => Category::paginate(1)
         ]);
     }
 
