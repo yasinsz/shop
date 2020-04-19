@@ -16,10 +16,24 @@ class ProductController extends Controller
     public function index()
     {
         return view('backend/products/index', [
-            'products' => Product::all()
+            'products' => Product::paginate(10),
         ]);
     }
 
+    public function currentPage()
+    {
+        return view('backend/products/index', [
+            'products' => Product::currentPage()
+        ]);
+    }
+    /*
+    public function index()
+    {
+        $users = DB::table('users')->paginate(15);
+
+        return view('user.index', ['users' => $users]);
+    }
+*/
     /**
      * Show the form for creating a new resource.
      *

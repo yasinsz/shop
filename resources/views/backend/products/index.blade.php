@@ -22,7 +22,8 @@
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <div id="sampleTable_filter" class="dataTables_filter pt-2">
-                                    Showing 1 to 10 of 57 entries
+                                    Showing {{ $products->firstItem() }} to {{ $products->lastItem() }} of {{ $products->total() }} entries
+                                    <!-- Showing 1 to 10 of 57 entries -->
                                 </div>
                             </div>
                         </div>
@@ -58,7 +59,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-sm-12">
                                 <div class="paging_simple_numbers">
                                     <ul class="pagination justify-content-center">
@@ -73,7 +74,8 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+                        {{ $products->links() }}
                     </div>
                 </div>
             </div>

@@ -58,7 +58,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-sm-12">
                                 <div class="paging_simple_numbers">
                                     <ul class="pagination justify-content-center">
@@ -73,7 +73,8 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+                        {{ $categories->links() }}
                     </div>
                 </div>
             </div>
