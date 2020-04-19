@@ -54,7 +54,7 @@
                         @enderror
                     </div> -->
                 </div>
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Image</label>
                         <div class="form-control py-3">
@@ -62,7 +62,7 @@
                             <input type="file">
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
