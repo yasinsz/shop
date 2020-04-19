@@ -75,7 +75,9 @@
                                 </div>
                             </div>
                         </div> -->
-                        {{ $products->links() }}
+                        <div class="pagination justify-content-center">
+                            {{ $products->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
