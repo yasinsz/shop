@@ -25,6 +25,19 @@
                         <p class="invalid-feedback">{{ $errors->first('name') }}</p>
                         @enderror
                     </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Name</label>
+                        <select name="products[]" autocomplete="off" size="20" multiple>
+                            @foreach($products as $product)
+                            <<option @if($selectedProducts->contains($product)) selected @endif
+                                value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
+                        </select>
+                        @error('name')
+                        <p class="invalid-feedback">{{ $errors->first('name') }}</p>
+                        @enderror
+                    </div>
                     <!-- <div class="form-group">
                         <label class="control-label">Description</label>
                         <textarea class="form-control" rows="3" name="description">{{ old('description') ?? $category->description }}</textarea>
