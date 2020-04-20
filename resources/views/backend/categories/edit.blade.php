@@ -27,15 +27,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label">Name</label>
-                        <select name="products[]" autocomplete="off" size="20" multiple>
-                            @foreach($products as $product)
-                            <<option @if($selectedProducts->contains($product)) selected @endif
+                        <label class="control-label">Products</label>
+                        <select multiple autocomplete="off" name="products[]" size="20" class="form-control @error('products') is-invalid @enderror">
+                            @foreach ($products as $product)
+                            <option @if($selectedProducts->contains($product)) selected @endif
                                 value="{{ $product->id }}">{{ $product->name }}</option>
-                                @endforeach
+                            @endforeach
                         </select>
-                        @error('name')
-                        <p class="invalid-feedback">{{ $errors->first('name') }}</p>
+                        @error('products')
+                        <p class="invalid-feedback">{{ $errors->first('products') }}</p>
                         @enderror
                     </div>
                     <!-- <div class="form-group">

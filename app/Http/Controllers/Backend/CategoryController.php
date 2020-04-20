@@ -67,7 +67,11 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('backend/categories/edit', ['category' => $category, 'products' => Product::all(), 'selectedProducts' => $category->products]);
+        return view('backend/categories/edit', [
+            'category' => $category,
+            'products' => Product::all(),
+            'selectedProducts' => $category->products
+        ]);
     }
 
     /**
