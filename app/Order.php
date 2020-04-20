@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    public function OrderItems()
+    public function orderItems()
     {
-        return $this->hasMany('App\OrderItems');
+        return $this->hasMany('App\OrderItem');
     }
 }
