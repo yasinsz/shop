@@ -21,16 +21,10 @@ Route::get('/', function () {
 Route::get('/categories/{category}',    'CategoryController@show');
 Route::get('/products/{product}',       'ProductController@show');
 
-
-Route::get('/cart',                     function () {
-    return view('frontend/cart');
-});
-Route::get('/cart',           'CartController@cart');
-Route::post('/cart/add',      'CartController@addToCart');
-Route::patch('/cart/update',  'CartController@updateCart');
-Route::delete('/cart/remove', 'CartController@removeFromCart');
-
-
+Route::get('/cart',                     'CartController@show');
+Route::post('/cart/add',                'CartController@addToCart')->name('addToCart');
+Route::patch('/cart/update',            'CartController@updateCart');
+Route::delete('/cart/remove',           'CartController@removeFromCart');
 
 Route::get('/checkout/shipping',        function () {
     return view('frontend/checkout/shipping');
@@ -38,3 +32,33 @@ Route::get('/checkout/shipping',        function () {
 Route::get('/checkout/payment',         function () {
     return view('frontend/checkout/payment');
 });
+
+// Route::get('/', function () {
+//     return view('frontend/home', [
+//         'products' => App\Product::take(4)->get()
+//     ]);
+// });
+// Route::get('/categories/{category}',    'CategoryController@show');
+// Route::get('/products/{product}',       'ProductController@show');
+
+
+// Route::get('/cart',                     function () {
+//     return view('frontend/cart');
+// });
+// Route::get('/cart',           'CartController@cart');
+// Route::post('/cart/add',      'CartController@addToCart')->name('addToCart');
+// Route::patch('/cart/update',  'CartController@updateCart');
+// Route::delete('/cart/remove', 'CartController@removeFromCart');
+
+
+
+// Route::get('/checkout/shipping',        function () {
+//     return view('frontend/checkout/shipping');
+// });
+// Route::get('/checkout/payment',         function () {
+//     return view('frontend/checkout/payment');
+// });
+
+
+// method name routing
+// Route::post('/cart/add',      'CartController@addToCart')->name('addToCart');
