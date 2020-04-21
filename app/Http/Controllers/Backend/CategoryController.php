@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -27,7 +28,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend/categories/create');
+        return view('backend/categories/create', [
+            'products' => Product::all()
+        ]);
     }
 
     /**
@@ -38,7 +41,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create($this->validateData());
+        $this->validateData();
+        $category = Category::create($request->except(['products']));
+        $category->products()->sync($request->input('products'));
 
         return redirect()->route('admin.categories.index');
     }
@@ -62,7 +67,11 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('backend/categories/edit', ['category' => $category]);
+        return view('backend/categories/edit', [
+            'category' => $category,
+            'products' => Product::all(),
+            'selectedProducts' => $category->products
+        ]);
     }
 
     /**
@@ -96,6 +105,7 @@ class CategoryController extends Controller
     {
         return request()->validate([
             'name' => 'required|min:3',
+            'products' => 'exists:products,id',
             // 'price' => 'required|numeric|between:0,9999.99',
             // 'description' => 'required|min:3',
             // 'msrp' => 'numeric|between:0,9999.99',
