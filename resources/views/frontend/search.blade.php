@@ -15,7 +15,7 @@
             </select>
         </div>
     </div>
-    <?php /* <div class="row mb-5 d-flex justify-content-start text-center">
+    <div class="row mb-5 d-flex justify-content-start text-center">
         @foreach($products as $product)
         <div class="col-md-3">
             <a href="{{ url("/products/{$product->id}") }}" class="d-block border rounded mb-4 p-0 shadow-sm text-decoration-none">
@@ -32,6 +32,5 @@
     <div class="pagination justify-content-center">
         {{ $products->links() }}
     </div>
-    */ ?>
 </div>
 @endsection

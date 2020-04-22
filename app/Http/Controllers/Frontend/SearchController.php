@@ -9,8 +9,13 @@ class SearchController extends Controller
 {
     public function index()
     {
+        $query = request()->input('q');
+        $products = \App\Product::where('name', 'LIKE', "%$query%")
+            ->orwhere('description', 'LIKE', "%$query%")
+            ->paginate(8);
         return view('frontend/search', [
-            'query' => request()->input('q')
+            'query' => $query,
+            'products' => $products
         ]);
     }
 }
