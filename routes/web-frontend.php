@@ -33,6 +33,8 @@ Route::get('/checkout/payment',         function () {
     return view('frontend/checkout/payment');
 });
 
+Route::get('/search', 'SearchController@index')->name('search');
+
 // Route::get('/', function () {
 //     return view('frontend/home', [
 //         'products' => App\Product::take(4)->get()
