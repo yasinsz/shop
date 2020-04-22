@@ -12,7 +12,8 @@ class SearchController extends Controller
         $query = request()->input('q');
         $products = \App\Product::where('name', 'LIKE', "%$query%")
             ->orwhere('description', 'LIKE', "%$query%")
-            ->paginate(8);
+            ->paginate(8)
+            ->appends(request()->query());
         return view('frontend/search', [
             'query' => $query,
             'products' => $products
