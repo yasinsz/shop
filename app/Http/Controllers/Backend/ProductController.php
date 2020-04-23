@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    //authorized function kp
+    // public function __construct()
+    // {
+    //     $this->authorizeResource(Product::class, 'product');
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -88,10 +94,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $product->update($this->validateData());
+        $data = $this->validateData();
+        if ($request->has('image')) {
+            $path = $request->file('image')->store('/products/images', 'public');
+            $data['image'] = $path;
+        }
+        $product->update($data);
 
         return redirect()->route('admin.products.index');
     }
+
 
     /**
      * Remove the specified resource from storage.
