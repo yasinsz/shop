@@ -26,7 +26,7 @@
                         <td>{{ $cartItem['name'] }}</td>
                         <td>
                             <div class="input-group">
-                                <input class="form-control mr-2" type="text" name="qty" value={{ $cartItem['qty'] }}>
+                                <input class="form-control mr-2" type="text" name="qty" value="{{ $cartItem['qty'] }}">
                                 <button type=" submit" class="btn btn-sm btn-secondary">Update</button>
                             </div>
                     </form>
@@ -34,8 +34,12 @@
                     <td></td>
                     <td class="text-right">{{ $cartItem['price'] }}</td>
                     <td class="text-right">
-                        <button class="btn btn-sm btn-danger">:heavy_multiplication_x:</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteForm.submit(); return false;">X</button>
                     </td>
+                    <form id="deleteForm" method="POST" action="{{ route('removeFromCart', $cartItem) }}">
+                        @csrf
+                        @method('DELETE')
+                    </form>
                 </tr>
                 @endforeach
                 <tr>
