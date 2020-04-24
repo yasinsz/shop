@@ -26,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::share('categories', Category::all());
+        View::share('cartItems', session()->has('cart') ? count(session()->get('cart')) : 0);
     }
 }
