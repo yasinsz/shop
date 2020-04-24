@@ -3,21 +3,57 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Product;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function show()
+
+    public function cart()
     {
-        return view('frontend/cart');
+        $isEmpty = false;
+        if (session()->has('cart')) {
+            $cart = session()->get('cart');
+        } else {
+            $isEmpty = true;
+        }
+
+        $cartItems = [];
+        $totalPrice = 0;
+
+        foreach ($cart as $key => $item) {
+
+            $cartItems[$key] = array(
+                'id' => $key,
+                'qty' => $cart[$key],
+                'name' => Product::find($key)->name,
+                'price' => Product::find($key)->price * $cart[$key]
+            );
+            $totalPrice += $cartItems[$key]['price'];
+        };
+
+        return view(
+            'frontend/cart',
+            [
+                'cartItems' => $cartItems,
+                'total' => $totalPrice,
+                'isEmpty' => $isEmpty
+            ]
+        );
     }
+
+
+    // public function show()
+    // {
+    //     return view('frontend/cart');
+    // }
 
     public function addToCart(Request $request)
     {
         // validate input
         $data = $request->validate([
             'id' => 'required|integer',
-            'qty' => 'required|integer'
+            'qty' => 'required|integer|'
         ]);
 
         // get cart from session
@@ -42,45 +78,25 @@ class CartController extends Controller
         return redirect('/cart');
     }
 
-    public function updateCart()
+    public function updateCart(Request $request)
     {
+        $data = $request->validate([
+            'qty' => 'required|integer'
+        ]);
+        $qty = (int) $data['qty'];
+        $cart = session()->get('cart');
+        if ($qty === 0)
+            unset($cart[$request->id]);
+        else
+            $cart[$request->id] = $qty;
+        if (empty($cart))
+            session()->remove('cart');
+        else
+            session()->put('cart', $cart);
+        return redirect('/cart');
     }
 
     public function removeFromCart()
     {
     }
 }
-
-
-
-
-// public function addToCart(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|min:3',
-    //         'qty' => 'required|numeric|between:0,9999.99',
-    //     ]);
-
-
-    //     $session = session()->get('qty', 'id');
-
-
-
-    //     session()->put([
-    //         'qty' => $request->input('id'),
-    //         'id' => $request->input('id'),
-    //     ]);
-
-    //     // $session = session()->get('cart');
-
-    //     return redirect()->route('frontend/cart');
-    // }
-
-    // public function updateCart()
-    // {
-    // }
-
-
-    // public function removeFromCart()
-    // {
-    // }
