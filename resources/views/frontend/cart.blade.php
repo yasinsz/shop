@@ -16,29 +16,34 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($cartItems as $cartItem)
                 <tr>
-                    <td><img src="https://dummyimage.com/50x50/55595c/fff"> </td>
-                    <td>Product Name Dada</td>
-                    <td>
-                        <form>
+                    <form method="POST" class="form-inline my-2 my-lg-0" action="{{ route('updateCart', $cartItem) }}">
+                        @csrf
+                        @method('PATCH')
+
+                        <td><img src="https://dummyimage.com/50x50/55595c/fff"> </td>
+                        <td>{{ $cartItem['name'] }}</td>
+                        <td>
                             <div class="input-group">
-                                <input class="form-control mr-2" type="text" value="1">
-                                <button type="submit" class="btn btn-sm btn-secondary">Update</button>
+                                <input class="form-control mr-2" type="text" name="qty" value={{ $cartItem['qty'] }}>
+                                <button type=" submit" class="btn btn-sm btn-secondary">Update</button>
                             </div>
-                        </form>
+                    </form>
                     </td>
                     <td></td>
-                    <td class="text-right">124,90 €</td>
+                    <td class="text-right">{{ $cartItem['price'] }}</td>
                     <td class="text-right">
-                        <button class="btn btn-sm btn-danger">✖</button>
+                        <button class="btn btn-sm btn-danger">:heavy_multiplication_x:</button>
                     </td>
                 </tr>
+                @endforeach
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td class="text-right"><strong>Total</strong></td>
-                    <td class="text-right"><strong>346,90 €</strong></td>
+                    <td class="text-right"><strong>{{ $total }} €</strong></td>
                     <td></td>
                 </tr>
             </tbody>

@@ -21,9 +21,9 @@ Route::get('/', function () {
 Route::get('/categories/{category}',    'CategoryController@show');
 Route::get('/products/{product}',       'ProductController@show');
 
-Route::get('/cart',                     'CartController@show');
+Route::get('/cart',                     'CartController@cart')->name('cart');
 Route::post('/cart/add',                'CartController@addToCart')->name('addToCart');
-Route::patch('/cart/update',            'CartController@updateCart');
+Route::patch('/cart/update',            'CartController@updateCart')->name('updateCart');
 Route::delete('/cart/remove',           'CartController@removeFromCart');
 
 Route::get('/checkout/shipping',        function () {
