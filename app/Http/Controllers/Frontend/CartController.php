@@ -53,7 +53,7 @@ class CartController extends Controller
         // validate input
         $data = $request->validate([
             'id' => 'required|integer',
-            'qty' => 'required|integer|'
+            'qty' => 'required|integer|min:0'
         ]);
 
         // get cart from session

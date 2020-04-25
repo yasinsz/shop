@@ -25,6 +25,7 @@ Route::get('/cart',                     'CartController@cart')->name('cart');
 Route::post('/cart/add',                'CartController@addToCart')->name('addToCart');
 Route::patch('/cart/update',            'CartController@updateCart')->name('updateCart');
 Route::delete('/cart/remove',           'CartController@removeFromCart')->name('removeFromCart');
+
 Route::get('/checkout/shipping',        function () {
     return view('frontend/checkout/shipping');
 });

@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Category;
+use App\Order;
 use App\User;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::share('categories', Category::all());
         View::share('users', User::all());
+        View::share('orders', Order::all());
         View::share('cartItems', session()->has('cart') ? count(session()->get('cart')) : 0);
     }
 }

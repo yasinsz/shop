@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class OrderItem extends Model
 {
-    protected $fillable = ['name', 'price', 'description', 'qty'];
+    protected $fillable = ['name', 'price', 'description', 'address'];
 
     public function order()
     {

@@ -22,6 +22,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             'productsCount' => App\Product::count(),
             'categoriesCount' => App\Category::count(),
             'usersCount' => App\User::count(),
+            'ordersCount' => App\Order::count(),
         ]);
     });
 
