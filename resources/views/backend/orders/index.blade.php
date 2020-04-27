@@ -7,7 +7,7 @@
             <h1>Orders</h1>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
             <li class="breadcrumb-item">Orders</li>
         </ul>
     </div>
@@ -21,8 +21,10 @@
                                 <a href="#" class="btn btn-primary btn-sm">Add</a>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <div id="sampleTable_filter" class="dataTables_filter pt-2">
-                                    <?php /*Showing {{ $orders->firstItem() }} to {{ $orders->lastItem() }} of {{ $orders->total() }} entries*/ ?>
+                                <div class="dataTables_filter pt-2">
+                                    Showing {{ $orders->firstItem() }}
+                                    to {{ $orders->lastItem() }}
+                                    of {{ $orders->total() }} entries
                                 </div>
                             </div>
                         </div>
@@ -32,21 +34,21 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Description</th>
-                                            <th>Price</th>
+                                            <th>Created At</th>
                                             <th>Address</th>
+                                            <th>Items</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($orders as $order)
                                         <tr>
                                             <td>{{ $order->id }}</td>
-                                            <td>{{ $order->name }}</td>
-                                            <td>{{ $order->description }}</td>
-                                            <td>{{ $order->price }}</td>
-                                            <td>{{ $order->address }}</td>
-                                            <!-- <td><a href="#" class="btn btn-primary btn-sm w-100">Edit</a></td> -->
+                                            <td>{{ $order->created_at->toDayDateTimeString() }}</td>
+                                            <td>
+                                                <pre>{{ $order->address }}</pre>
+                                            </td>
+                                            <td>{{ $order->orderItems->count() }}</td>
+                                            <td><a href="{{ route('admin.orders.show', $order) }}" class="btn btn-primary btn-sm w-100">View</a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -54,7 +56,7 @@
                             </div>
                         </div>
                         <div class="pagination justify-content-center">
-                            <?php /* {{ $orders->links() }} */ ?>
+                            {{ $orders->links() }}
                         </div>
                     </div>
                 </div>

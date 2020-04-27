@@ -21,25 +21,15 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         return view('backend/home', [
             'productsCount' => App\Product::count(),
             'categoriesCount' => App\Category::count(),
-            'usersCount' => App\User::count(),
             'ordersCount' => App\Order::count(),
+            'usersCount' => App\User::count(),
         ]);
-    });
+    })->name('home');
 
     Route::resource('/products', 'ProductController');
-
     Route::resource('/categories', 'CategoryController');
-
+    Route::resource('/orders', 'OrderController')->only(['index', 'show']);
     Route::resource('/users', 'UserController');
-
-
-
-    Route::get('/orders',             function () {
-        return view('backend/orders/index');
-    });
-    Route::get('/orders/show',        function () {
-        return view('backend/orders/show');
-    });
 });
 
 /*

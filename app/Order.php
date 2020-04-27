@@ -10,4 +10,18 @@ class Order extends Model
     {
         return $this->hasMany('App\OrderItem');
     }
+
+    public function addItems(array $items)
+    {
+        // TODO iteriere durch alle items
+
+
+
+
+        // TODO füge jedes OrderItem mit der
+        // updateOrCreate-Methode zur Order hinzu
+
+
+
+    }
 }
