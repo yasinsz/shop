@@ -56,10 +56,15 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Product $product)
     {
-        Product::create($this->validateData());
-
+        $data = $this->validateData();
+        if ($request->has('image')) {
+            $path = $request->file('image')->store('/products/images', 'public');
+            $data['image'] = $path;
+        }
+        $product->create($data);
+        
         return redirect()->route('admin.products.index');
     }
 
@@ -125,7 +130,8 @@ class ProductController extends Controller
             'price' => 'required|numeric|between:0,9999.99',
             'description' => 'required|min:3',
             'msrp' => 'numeric|between:0,9999.99',
-            'stock' => 'integer'
+            'stock' => 'integer',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
     }
 }

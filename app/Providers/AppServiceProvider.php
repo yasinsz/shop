@@ -30,6 +30,6 @@ class AppServiceProvider extends ServiceProvider
         View::share('categories', Category::all());
         View::share('users', User::all());
         View::share('orders', Order::all());
-        View::share('cartItems', session()->has('cart') ? count(session()->get('cart')) : 0);
+        View::share('cartCount', session()->has('cart') ? count(session()->get('cart')) : 0);
     }
 }

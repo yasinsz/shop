@@ -5,7 +5,7 @@
         </a>
         <a class="btn" href="{{ route('cart') }}">
             Cart
-            <span class="ml-1 badge badge-dark">?</span>
+            <span class="ml-1 badge badge-dark">{{ count(session('cart', [])) }}</span>
         </a>
     </div>
     <div class="bg-dark">
@@ -28,5 +28,3 @@
         </div>
     </div>
 </header>
-
-<?php /* {{ $cartItem['qty'] }} */ ?>
