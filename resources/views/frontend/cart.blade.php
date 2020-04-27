@@ -3,6 +3,7 @@
 @section('content')
 <div class="container mb-4">
     <h1 class="my-5">Your Cart</h1>
+    {{ session('success', '') }}
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -34,12 +35,13 @@
                     <td></td>
                     <td class="text-right">{{ $cartItem['price'] }}</td>
                     <td class="text-right">
-                        <button class="btn btn-sm btn-danger" onclick="deleteForm.submit(); return false;">X</button>
+                        <form method="POST" action="{{ route('removeFromCart', $cartItem) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-sm btn-danger">X</button>
+                        </form>
                     </td>
-                    <form id="deleteForm" method="POST" action="{{ route('removeFromCart', $cartItem) }}">
-                        @csrf
-                        @method('DELETE')
-                    </form>
+
                 </tr>
                 @endforeach
                 <tr>

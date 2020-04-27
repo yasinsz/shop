@@ -62,9 +62,10 @@ class ProductController extends Controller
         if ($request->has('image')) {
             $path = $request->file('image')->store('/products/images', 'public');
             $data['image'] = $path;
+            $data->save();
         }
         $product->create($data);
-        
+
         return redirect()->route('admin.products.index');
     }
 
