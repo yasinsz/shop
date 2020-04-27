@@ -35,6 +35,19 @@ Route::get('/checkout/payment',         function () {
 
 Route::get('/search', 'SearchController@index')->name('search');
 
+
+//index
+Route::get('/checkout/shipping',    'CheckoutController@shipping');
+
+//Route::post('/checkout/shipping',   'CheckoutController@setShippingAddress');
+
+Route::get('/checkout/payment',     'CheckoutController@payment');
+
+Route::get('/checkout/success',     'CheckoutController@success');
+
+Route::get('/checkout/fail',        'CheckoutController@fail');
+
+
 // Route::get('/', function () {
 //     return view('frontend/home', [
 //         'products' => App\Product::take(4)->get()
