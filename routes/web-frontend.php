@@ -26,26 +26,12 @@ Route::post('/cart/add',                'CartController@addToCart')->name('addTo
 Route::patch('/cart/update',            'CartController@updateCart')->name('updateCart');
 Route::delete('/cart/remove',           'CartController@removeFromCart')->name('removeFromCart');
 
-Route::get('/checkout/shipping',        function () {
-    return view('frontend/checkout/shipping');
-});
-Route::get('/checkout/payment',         function () {
-    return view('frontend/checkout/payment');
-});
-
-Route::get('/search', 'SearchController@index')->name('search');
-
-
-//index
 Route::get('/checkout/shipping',    'CheckoutController@shipping');
-
-//Route::post('/checkout/shipping',   'CheckoutController@setShippingAddress');
-
+Route::post('/checkout/shipping',   'CheckoutController@setShippingAddress');
 Route::get('/checkout/payment',     'CheckoutController@payment');
-
 Route::get('/checkout/success',     'CheckoutController@success');
-
 Route::get('/checkout/fail',        'CheckoutController@fail');
+
 
 
 // Route::get('/', function () {
