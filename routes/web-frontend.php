@@ -33,7 +33,6 @@ Route::get('/checkout/success',     'CheckoutController@success');
 Route::get('/checkout/fail',        'CheckoutController@fail');
 
 
-
 // Route::get('/', function () {
 //     return view('frontend/home', [
 //         'products' => App\Product::take(4)->get()

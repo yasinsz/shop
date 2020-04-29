@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mb-4">
     <h1 class="my-5">Your Cart</h1>
-    {{ session('success', '') }}
+    @if(count($cartItems))
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -56,8 +56,11 @@
         </table>
     </div>
     <div class="d-flex justify-content-between">
-        <a href="/" class="btn btn-light">Continue Shopping</a>
-        <a href="#" class="btn btn-primary">Checkout</a>
+        <a href="{{ url('/') }}" class="btn btn-light">Continue Shopping</a>
+        <a href="{{ url('checkout/shipping') }}" class="btn btn-primary">Checkout</a>
     </div>
+    @else
+    <h3 class="my-5">Your cart is empty.</h3>
+    @endif
 </div>
 @endsection

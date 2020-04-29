@@ -25,11 +25,25 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
     public function boot()
     {
-        View::share('categories', Category::all());
-        View::share('users', User::all());
-        View::share('orders', Order::all());
-        View::share('cartCount', session()->has('cart') ? count(session()->get('cart')) : 0);
+        ////before
+        // View::share('categories', Category::all());
+        try {
+            View::share('categories', Category::all());
+        } catch (\Exception $e) {
+            // categories tables has not been created yet...
+        }
+        // View::share('users', User::all());
+        // View::share('cartItems', session()->has('cart') ? count(session()->get('cart')) : 0);
     }
+    // public function boot()
+    // {
+
+    //     View::share('categories', Category::all());
+    //     View::share('users', User::all());
+    //     View::share('orders', Order::all());
+    //     View::share('cartCount', session()->has('cart') ? count(session()->get('cart')) : 0);
+    // }
 }
